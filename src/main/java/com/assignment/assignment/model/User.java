@@ -3,7 +3,7 @@ package com.assignment.assignment.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user_info")
 public class User {
     // table columns userId , commentFrom , commentTo
     @Id
