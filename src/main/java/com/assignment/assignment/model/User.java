@@ -1,5 +1,6 @@
 package com.assignment.assignment.model;
 
+
 import jakarta.persistence.*;
 
 @Entity
