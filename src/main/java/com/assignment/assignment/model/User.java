@@ -3,6 +3,8 @@ package com.assignment.assignment.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "user_info")
 public class User {
@@ -11,10 +13,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "userid")
     private int userId ;
-    @Column(name = "commentfrom")
+
+    @Column(name = "commentfrom" , length = 25, nullable = false)
     private String commentFrom ;
-    @Column(name = "commentto")
+
+    @Column(name = "commentto" ,  length = 25, nullable = false)
     private String commentTo ;
+
+    @OneToMany(mappedBy = "postedByUserId")
+    private Set<Comment> comments;
 
 
     // default constructor

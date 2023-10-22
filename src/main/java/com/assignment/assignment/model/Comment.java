@@ -14,15 +14,16 @@ public class Comment {
     @Column(name = "commentid")
     private int commentId ;
 
-    @Column(name = "message")
+    @Column(name = "message" , length = 255, nullable = false)
     private String message ;
 
     // spring boot will automatically handle the conversion between timesstamp and LocalDateTime
-    @Column(name ="commentdatetime")
+    @Column(name ="commentdatetime" , nullable = false)
     private LocalDateTime commentDateTime  ;
 
-    @Column(name ="postedbyuserid")
-    private int postedByUserId ;
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User postedByUserId ;
 
 
     // default constructor
@@ -31,7 +32,7 @@ public class Comment {
 
 
     // parametrize constructor
-    public Comment(int commentId, String message, LocalDateTime commentDateTime, int postedByUserId) {
+    public Comment(int commentId, String message, LocalDateTime commentDateTime, User postedByUserId) {
         this.commentId = commentId;
         this.message = message;
         this.commentDateTime = commentDateTime;
@@ -63,11 +64,11 @@ public class Comment {
         this.commentDateTime = commentDateTime;
     }
 
-    public int getPostedByUserId() {
+    public User getPostedByUserId() {
         return postedByUserId;
     }
 
-    public void setPostedByUserId(int postedByUserId) {
+    public void setPostedByUserId(User postedByUserId) {
         this.postedByUserId = postedByUserId;
     }
 }
