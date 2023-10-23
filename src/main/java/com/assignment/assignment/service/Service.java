@@ -9,6 +9,7 @@ import com.assignment.assignment.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,12 +28,25 @@ public class Service {
         if(!(checkValidity(commentHelper.getCommentTo())) || !(checkValidity(commentHelper.getCommentFrom())))
             return "Invalid Request" ;
 
-        return "valid request";
-//        User user = new User(commentTo , commentFrom , message);
-//        Comment comment = new Comment(message , LocalDateTime.now() , user);
-//        user.setComments(comment);
-//        userRepository.save(user);
-//        commentRepository.save(comment);
+        User user = null ;
+        for(User u : userRepository.findAll())
+            if (commentHelper.getCommentTo().equals(u.getUserName()))
+                user = u ;
+
+        if(user == null )
+        {
+            user = new User(commentHelper.getCommentTo()
+                    , commentHelper.getCommentFrom()
+                    , commentHelper.getCommentTo());
+        }
+
+        Comment comment = new Comment(commentHelper.getMessage()
+                ,LocalDateTime.now()
+                , user);
+        user.setComments(comment);
+        userRepository.save(user);
+        commentRepository.save(comment);
+        return "comment added successfully !!";
     }
 
     public boolean checkValidity(String name)
