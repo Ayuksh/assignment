@@ -9,7 +9,9 @@ import com.assignment.assignment.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -63,5 +65,23 @@ public class Service {
         // Return if the username
         // matched the ReGex
         return m.matches();
+    }
+
+    public List<String> fetchComments(String userName)
+    {
+        User user = new User();
+
+        for (User u : userRepository.findAll()) {
+            if (u.getUserName().equals(userName))
+                user = u;
+        }
+
+       List<String> comments = new ArrayList<>();
+
+       for (Comment c : user.getComments()) {
+           comments.add(c.getMessage());
+       }
+
+       return comments ;
     }
 }
