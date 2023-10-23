@@ -1,5 +1,6 @@
 package com.assignment.assignment.model;
 
+// this call is created for the data transfer between the controller and the service class
 public class CommentHelper {
     private String commentFrom ;
     private String commentTo ;
@@ -14,6 +15,7 @@ public class CommentHelper {
         this.message = message;
     }
 
+    // getter and setter methods
     public String getCommentFrom() {
         return commentFrom;
     }

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comment_info")
 public class Comment {
-
+    // table columns commentId , message , commentdatetime , postedbyuserid
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "commentid")
