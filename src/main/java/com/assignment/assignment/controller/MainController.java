@@ -1,6 +1,7 @@
 package com.assignment.assignment.controller;
 
 import com.assignment.assignment.model.Comment;
+import com.assignment.assignment.model.CommentHelper;
 import com.assignment.assignment.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +17,8 @@ public class MainController {
     @Autowired
     Service service ;
    @PostMapping("/add")
-    public String addComment()
+    public String addComment(@RequestBody CommentHelper commentHelper)
     {
-        service.addComment("A" , "B" , "this is comment");
-        return "comment added successfully ";
+        return service.addComment(commentHelper);
     }
 }
