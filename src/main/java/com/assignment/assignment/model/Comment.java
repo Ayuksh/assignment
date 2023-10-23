@@ -12,7 +12,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "commentid")
-    private int commentId ;
+    private long commentId ;
 
     @Column(name = "message" , length = 255, nullable = false)
     private String message ;
@@ -32,19 +32,18 @@ public class Comment {
 
 
     // parametrize constructor
-    public Comment(int commentId, String message, LocalDateTime commentDateTime, User postedByUserId) {
-        this.commentId = commentId;
+    public Comment( String message, LocalDateTime commentDateTime, User postedByUserId) {
         this.message = message;
         this.commentDateTime = commentDateTime;
         this.postedByUserId = postedByUserId;
     }
 
     // getter and setter  methods
-    public int getCommentId() {
+    public long getCommentId() {
         return commentId;
     }
 
-    public void setCommentId(int commentId) {
+    public void setCommentId(long commentId) {
         this.commentId = commentId;
     }
 
